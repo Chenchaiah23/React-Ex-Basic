@@ -1226,7 +1226,7 @@ const restData = [
         totalRatingsString: "1K+",
         sla: {
           deliveryTime: 29,
-          lastMileTravel: 4.7,
+          lastMileTravel: 3.5,
           serviceability: "SERVICEABLE",
           slaString: "25-30 mins",
           lastMileTravelString: "4.7 km",

@@ -1,17 +1,79 @@
 import RestCard from "./RestCard";
 import restData from "../utils/mockData";
+import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
-    return (
-      <div className="body">
-        <div className="search">Search</div>
-        <div className="res-container">
-          {restData.map((restaurant) => (
-            <RestCard key={restaurant.info.id} restData={restaurant} />
-          ))}
-        </div>
-      </div>
+  const [listOfRests, setListOfRests] = useState([]);
+  const [filteredList,setFilteredList] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+    //console.log(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
+    setListOfRests(
+      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+    );
+    setFilteredList(
+      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
     );
   };
 
-  export default Body;
+  if (listOfRests.length === 0) {
+    return <Shimmer/>;
+  }
+  return (
+    <div className="body">
+      <div className="search">
+        <input
+          type="text"
+          className="search-btn"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+            //if(e.target.value === '')
+            //fetchData();
+          }}
+          
+        />
+        <button
+          className="search"
+          onClick={() => {
+            const filterList = listOfRests.filter((rest) =>
+              rest.info.name.toLowerCase().includes(searchText.toLowerCase())
+            );
+            setFilteredList(filterList);
+          }}
+         
+        >
+          Search
+        </button>
+      </div>
+      <div className="filter">
+        <button
+          className="filter-btn"
+          onClick={() => {
+            const filteredList = listOfRests.filter(
+              (rest) => rest.info.avgRating > 4.4
+            );
+            setFilteredList(filteredList);
+          }}
+        >
+          Top Rated Restaurants
+        </button>
+      </div>
+      <div className="res-container">
+        {filteredList.map((restaurant) => (
+          <RestCard key={restaurant.info.id} restData={restaurant} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Body;
