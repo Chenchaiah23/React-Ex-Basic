@@ -1,13 +1,17 @@
-import RestCard from "./RestCard";
+import RestCard, { withBestLabel } from "./RestCard";
 import restData from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [listOfRests, setListOfRests] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const onlineStatus = useOnlineStatus();
+  const RestCardLabel = withBestLabel(RestCard);
+
   useEffect(() => {
     fetchLiveData();
     //fetchMockData();
@@ -23,6 +27,9 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
+    console.log(
+      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+    );
     setListOfRests(
       json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
     );
@@ -30,7 +37,7 @@ const Body = () => {
       json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
     );
   };
-
+  if (onlineStatus == false) return <h1>You are offline buddy!!!</h1>;
   if (listOfRests.length === 0) {
     return <Shimmer />;
   }
@@ -74,7 +81,14 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredList.map((restaurant) => (
-          <Link to={"/restaurants/"+restaurant.info.id}><RestCard key={restaurant.info.id} restData={restaurant} /></Link>
+          <Link
+            to={"/restaurants/" + restaurant.info.id}
+            key={restaurant.info.id}
+          >
+            
+            {restaurant.info.avgRating > 4.5 ? <RestCardLabel restData={restaurant}/> : <RestCard key={restaurant.info.id} restData={restaurant} />}  
+            
+          </Link>
         ))}
       </div>
     </div>

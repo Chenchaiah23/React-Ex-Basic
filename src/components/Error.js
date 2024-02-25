@@ -4,7 +4,7 @@ const Error = () => {
   return (
     <>
       <div>
-        <h1>Oopssss Page not fount</h1>
+        <h1>Oopssss Page not found</h1>
       </div>
       <h3>{err.status}:{err.statusText}</h3>
     </>

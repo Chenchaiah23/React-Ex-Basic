@@ -1,6 +1,5 @@
 import { LOGO_URL } from "../utils/constants";
 const RestCard = (props) => {
-  
   const restData = props;
   const { name, avgRating, sla, cloudinaryImageId } = restData?.restData.info;
   return (
@@ -13,4 +12,14 @@ const RestCard = (props) => {
   );
 };
 
+export const withBestLabel = (RestCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label style={{position:"absolute",backgroundColor:"black",color:"white"}}><b>Best Rest</b></label>
+        <RestCard {...props}/>
+      </div>
+    );
+  };
+};
 export default RestCard;
