@@ -18,7 +18,7 @@ const Body = () => {
   }, []);
 
   const fetchMockData = () => {
-    console.log(restData);
+    //console.log(restData);
     setListOfRests(restData);
     setFilteredList(restData);
   };
@@ -27,9 +27,9 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    console.log(
-      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
-    );
+    // console.log(
+    //   json.data.cards
+    // );
     setListOfRests(
       json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
     );
@@ -42,11 +42,11 @@ const Body = () => {
     return <Shimmer />;
   }
   return (
-    <div className="body">
-      <div className="search">
+    <div className="">
+      <div className="m-4 p-4" >
         <input
           type="text"
-          className="search-btn"
+          className="border border-solid"
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value);
@@ -55,7 +55,7 @@ const Body = () => {
           }}
         />
         <button
-          className="search"
+          className="px-4 bg-green-100 m-4 border border-black  rounded-lg"
           onClick={() => {
             const filterList = listOfRests.filter((rest) =>
               rest.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -66,9 +66,9 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className="filter">
+      <div className="">
         <button
-          className="filter-btn"
+          className="px-4 bg-green-100 m-4 border border-black  rounded-lg"
           onClick={() => {
             const filteredList = listOfRests.filter(
               (rest) => rest.info.avgRating > 4.4
@@ -79,15 +79,17 @@ const Body = () => {
           Top Rated Restaurants
         </button>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap rounded-md">
         {filteredList.map((restaurant) => (
           <Link
             to={"/restaurants/" + restaurant.info.id}
             key={restaurant.info.id}
           >
-            
-            {restaurant.info.avgRating > 4.5 ? <RestCardLabel restData={restaurant}/> : <RestCard key={restaurant.info.id} restData={restaurant} />}  
-            
+            {restaurant.info.avgRating > 4.5 ? (
+              <RestCardLabel restData={restaurant} />
+            ) : (
+              <RestCard key={restaurant.info.id} restData={restaurant} />
+            )}
           </Link>
         ))}
       </div>

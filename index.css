@@ -1,70 +1,7 @@
-.logo{
-    width: 200px;
-}
-.header{
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid black;
-}
+/* src/index.css */
 
-.nav-items > ul {
-    display: flex;
-    list-style-type: none;
-}
-.nav-items > ul > li{
-    font-size: 24px;
-    padding: 10px;
-    margin:10px;
-}
-.rest-card{
-    width: 200px;
-    height: 300px;
-    
-    padding: 5px;
-}
-.rest-card:hover{
-    border: 1px solid black;
-    cursor: pointer;
-}
-.search{
-    padding:4px;
-}
-.rest-logo{
-    height: 50%;
-}
+@import 'tailwindcss/base';
 
-.rest-logo{
-    width: 100%;
-}
-.res-container{
-    display: flex;
-    flex-wrap: wrap;
-    margin: 5px;
-    padding: 15px;
-}
-.filter-btn{
-    margin:10px;
-    cursor: pointer;
-}
+@import 'tailwindcss/components';
 
-.login-btn{
-    padding: 5px;
-    cursor: pointer;
-}
-
-.shimmer-card{
-    width: 200px;
-    height: 300px;
-    background-color: #f0f0f0;
-    margin: 20px;
-}
-
-.shimmer-container{
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.user-card{
-    padding: 10px;
-    border: 1px solid black;
-}
+@import 'tailwindcss/utilities';
