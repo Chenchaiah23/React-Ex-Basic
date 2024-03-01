@@ -6,8 +6,10 @@ import ItemList from "./ItemList";
 const RestCategory = ({data,showAcc,setShowIndex}) => {
   //console.log(data);
   // this maintains own state for each children
+  const [flag,setFlag] = useState(false);
    const handleClick = () => {
-    setShowIndex();
+    //setShowIndex();
+    setFlag(!flag);
    };
    //console.log('show',setShowIndex)
   return (
@@ -25,7 +27,7 @@ const RestCategory = ({data,showAcc,setShowIndex}) => {
           </span>
         </div>
 
-        {showAcc && 
+        {flag && 
           <ItemList items={data.itemCards} />
         }
       </div>

@@ -1,4 +1,4 @@
-export const DATA = {
+{
     "statusCode": 0,
     "data": {
         "statusMessage": "done successfully",
@@ -9689,4 +9689,4 @@ export const DATA = {
     "sid": "cfmca161-60f3-42f1-aeab-1d53eb490d20",
     "deviceId": "6abbb618-12c9-b19e-3479-074283746d2f",
     "csrfToken": "huKD2jGui4dW-l55U62EyrkMR6JXJxnIi0TWp6I4"
-};
+}

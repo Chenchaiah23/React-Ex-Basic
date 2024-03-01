@@ -1,4 +1,4 @@
-export const RESTAURANT_PAGE = {
+{
     "statusCode": 0,
     "data": {
         "statusMessage": "done successfully",
@@ -8923,4 +8923,4 @@ export const RESTAURANT_PAGE = {
     "sid": "cfmf15e3-9df6-4c9a-9de6-6862f2b8bf97",
     "deviceId": "3267169c-51ae-ed1e-7e55-7fe1e4c3d195",
     "csrfToken": "PZzYH1asIidL-hc0ccKjMTLmSknCCTSX34sATmms"
-};
+}

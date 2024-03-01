@@ -1,9 +1,10 @@
 import RestCard, { withBestLabel } from "./RestCard";
-import restData from "../utils/mockData";
+import restData from "../data/homePage";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import 'dotenv/config';
 
 const Body = () => {
   const [listOfRests, setListOfRests] = useState([]);
@@ -13,14 +14,15 @@ const Body = () => {
   const RestCardLabel = withBestLabel(RestCard);
 
   useEffect(() => {
-    fetchLiveData();
-    //fetchMockData();
+    process.env.APP_START === "online" ? fetchLiveData() : fetchMockData();
   }, []);
-
-  const fetchMockData = () => {
-    //console.log(restData);
-    setListOfRests(restData);
-    setFilteredList(restData);
+  const fetchMockData = async () => {
+    console.log(restData.data.cards);
+    const data = await fetch(
+      "http://localhost:3000/homePage.json"
+    );
+    setListOfRests(restData.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+    setFilteredList(restData.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
   };
   const fetchLiveData = async () => {
     const data = await fetch(

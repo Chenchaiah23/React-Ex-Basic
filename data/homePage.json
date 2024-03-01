@@ -1,4 +1,4 @@
-export const HOME_PAGE = {
+{
     "statusCode": 0,
     "data": {
         "statusMessage": "done successfully",
@@ -6634,4 +6634,4 @@ export const HOME_PAGE = {
     "sid": "cfl0d5c7-8337-4074-ad30-82b086a4afdb",
     "deviceId": "d7f8bf6c-9fdc-2021-d264-208eca71f81f",
     "csrfToken": "qjFx2cbtpEL8-KYbaGRLcgpGC1W5ERx7gcJC7374"
-};
+}
