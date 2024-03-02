@@ -18,7 +18,6 @@ const useRestaurantMenu = (resId) => {
 
   const fetchRestInfoOffline = async () => {
     const url = location.href;
-    console.log('id',)
     const data = await fetch(
       "http://localhost:3000/restaurants/" +
       url.substring(url.lastIndexOf('/')+1,url.length) +".json"

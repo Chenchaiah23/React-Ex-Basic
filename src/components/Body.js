@@ -1,23 +1,25 @@
 import RestCard, { withBestLabel } from "./RestCard";
 import restData from "../data/homePage";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import 'dotenv/config';
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
-  const [listOfRests, setListOfRests] = useState([]);
-  const [filteredList, setFilteredList] = useState([]);
+  const [listOfRests, setListOfRests] = useState(null);
+  const [filteredList, setFilteredList] = useState(null);
   const [searchText, setSearchText] = useState("");
   const onlineStatus = useOnlineStatus();
   const RestCardLabel = withBestLabel(RestCard);
+  const {loggedInUser, setUserName} = useContext(UserContext);
 
   useEffect(() => {
     process.env.APP_START === "online" ? fetchLiveData() : fetchMockData();
   }, []);
   const fetchMockData = async () => {
-    console.log(restData.data.cards);
+    //console.log(restData.data.cards);
     const data = await fetch(
       "http://localhost:3000/homePage.json"
     );
@@ -40,12 +42,13 @@ const Body = () => {
     );
   };
   if (onlineStatus == false) return <h1>You are offline buddy!!!</h1>;
-  if (listOfRests.length === 0) {
+  if (listOfRests === null) {
     return <Shimmer />;
   }
   return (
     <div className="">
-      <div className="m-4 p-4" >
+      <div className="flex">
+      <div className="" >
         <input
           type="text"
           className="border border-solid"
@@ -81,6 +84,12 @@ const Body = () => {
           Top Rated Restaurants
         </button>
       </div>
+      <div className="p-4">
+        Update Context : 
+        <input className="border border-black px-2" type="text" value={loggedInUser} onChange={(e) => setUserName(e.target.value)}></input>
+      </div>
+      </div>
+      
       <div className="flex flex-wrap rounded-md">
         {filteredList.map((restaurant) => (
           <Link
