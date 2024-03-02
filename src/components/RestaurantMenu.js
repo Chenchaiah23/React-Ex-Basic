@@ -3,13 +3,16 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestCategory from "./RestCategory";
+import loading from "../images/loading.gif";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const restInfoFull = useRestaurantMenu(resId);
   //console.log('rest info',restInfo?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
   const [showIndex, setShowIndex] = useState(null);
-  if (restInfoFull === null) return <Shimmer />;
+  if (restInfoFull === null) return (
+    <img className="mx-auto h-16 w-16" src={loading} />
+  );
   const restInfo = restInfoFull.cards.filter(
     (r) => r?.card?.card?.info != undefined
   );

@@ -12,7 +12,7 @@ const ItemList = ({ items }) => {
           <div className="flex justify-between">
             <div className="w-9/12">
               <span className="text-lg font-bold">{item.card.info.name}</span>
-              <span> - {item.card.info.price / 100}</span>
+              <span> - &#8377; {item.card.info.price / 100}</span>
               <p className="text-xs text-gray-500">{item.card.info.description}</p>
             </div>
             <div className="w-3/12">
