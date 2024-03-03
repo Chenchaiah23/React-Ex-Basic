@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { LOGO_URL } from "../utils/constants";
 import { addItem } from "../utils/redux/cartSlice";
 
-const ItemList = ({ items }) => {
+const ItemList = ({ items,isCart }) => {
   //console.log("items", items);
   const dispatch = useDispatch();
   const handleAddItem = (item) => {
@@ -22,10 +22,17 @@ const ItemList = ({ items }) => {
               <p className="text-xs text-gray-500">{item.card.info.description}</p>
             </div>
             <div className="w-3/12">
-              <div className="absolute">
-              <button className="p-2 bg-green-300 shadow-lg  rounded-lg" onClick={() => handleAddItem(item.card.info.name)}>Add +</button>
-              </div>
-              <img src={LOGO_URL + item.card.info.imageId} className="rounded-xl"/>
+              {
+                isCart ? "" : (
+                  <div className="absolute">
+                  <button className="p-2 bg-green-300 shadow-lg  rounded-lg" onClick={() => handleAddItem(item)}>Add +</button>
+                  </div>
+                )
+              }
+              {
+                isCart ? <img src={LOGO_URL + item.card.info.imageId} className="rounded-xl h-20"/> : <img src={LOGO_URL + item.card.info.imageId} className="rounded-xl"/>
+              }
+              
               
             </div>
           </div>

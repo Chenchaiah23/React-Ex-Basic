@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
+import cartImg from "../images/cart.jpg";
 
 const Header = () => {
   let [btnName, setBtnName] = useState("Login");
@@ -40,7 +41,7 @@ const Header = () => {
           <li className="px-4">
             <Link to="/grocery">Grocery</Link>
           </li>
-          <li className="px-4"><Link to="/cart">Cart ({cartItems.length} items)</Link></li>
+          <li className="px-4 font-bold"><Link to="/cart"><img src={cartImg} className="h-7"/> ({cartItems.length} items)</Link></li>
           <li className="px-4">
             <button
               className="login-btn"

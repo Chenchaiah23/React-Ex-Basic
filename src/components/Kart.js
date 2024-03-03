@@ -6,7 +6,7 @@ const Kart = () => {
   return (
     <div className="text-center p-4 m-4">
       <h1 className="font-bold text-2xl">Cart</h1>
-      <ItemList items={cart}/>
+      <ItemList items={cart} isCart={true}/>
     </div>
   );
 };
