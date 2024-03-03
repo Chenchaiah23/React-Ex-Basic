@@ -1,5 +1,5 @@
 import RestCard, { withBestLabel } from "./RestCard";
-import restData from "../data/homePage";
+import restData from "../../data/homePage";
 import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";

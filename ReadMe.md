@@ -30,3 +30,15 @@ Access app : http://localhost:1234<br/>
 - HTTPs
 - Tree shaking - remove unused code
 - Different dev and prod bundles
+
+## Redux
+
+- Install @reduxjs/toolkit and react-redux<br/>
+- Build our store
+- Connect out store to app
+- create Slice
+- dispatch action
+- Reducer
+- Selector
+
+
