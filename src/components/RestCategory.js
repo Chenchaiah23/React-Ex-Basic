@@ -14,7 +14,7 @@ const RestCategory = ({data,showAcc,setShowIndex}) => {
    //console.log('show',setShowIndex)
   return (
     <div>
-      <div className="w-6/12 bg-gray-100 shadow-lg p-4 mx-auto my-4 ">
+      <div className="w-6/12 bg-gray-100 shadow-lg p-4 mx-auto my-4">
         <div
           className="flex justify-between cursor-pointer"
           onClick={handleClick}

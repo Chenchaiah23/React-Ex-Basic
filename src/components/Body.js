@@ -47,7 +47,7 @@ const Body = () => {
   }
   return (
     <div className="">
-      <div className="flex">
+      <div className="flex p-4">
       <div className="" >
         <input
           type="text"

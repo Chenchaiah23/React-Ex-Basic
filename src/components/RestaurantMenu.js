@@ -10,9 +10,12 @@ const RestaurantMenu = () => {
   const restInfoFull = useRestaurantMenu(resId);
   //console.log('rest info',restInfo?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
   const [showIndex, setShowIndex] = useState(null);
-  if (restInfoFull === null) return (
-    <img className="mx-auto h-16 w-16" src={loading} />
-  );
+  if (restInfoFull === null)
+    return (
+    <div className="p-36">
+      <img className="mx-auto h-16 w-16" src={loading} />
+    </div>
+    );
   const restInfo = restInfoFull.cards.filter(
     (r) => r?.card?.card?.info != undefined
   );

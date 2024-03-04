@@ -13,6 +13,7 @@ const cartSlice = createSlice({
       //return newState;
 
       //in Redux toolkit, we have to mutate the state
+      //Redux used immer js to mutate the state
       state.items.push(action.payload);
     },
     removeItem: (state, action) => {

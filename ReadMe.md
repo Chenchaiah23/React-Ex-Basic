@@ -34,11 +34,14 @@ Access app : http://localhost:1234<br/>
 ## Redux
 
 - Install @reduxjs/toolkit and react-redux<br/>
-- Build our store
-- Connect out store to app
-- create Slice
-- dispatch action
-- Reducer
-- Selector
+- Build our store<br/>
+- Connect out store to app<br/>
+- create Slice<br/>
+- dispatch action<br/>
+- Reducer<br/>
+- Selector<br/>
 
-
+## Types of Developer Testing:
+- Unit Testing<br/>
+- Integration Testing<br/>
+- e2e Testing<br/>

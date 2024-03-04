@@ -15,7 +15,7 @@ const ItemList = ({ items,isCart }) => {
           key={item.card.info.id}
           className="p-2 m-2 border-gray-200 border-b-2 text-left"
         >
-          <div className="flex justify-between">
+          <div className="flex justify-between ">
             <div className="w-9/12">
               <span className="text-lg font-bold">{item.card.info.name}</span>
               <span> - &#8377; {item.card.info.price / 100}</span>
