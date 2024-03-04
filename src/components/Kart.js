@@ -8,19 +8,20 @@ const Kart = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+  //console.log('kart',cart);
   return (
     <div className="text-center p-4">
       <div>
         <h1 className="font-bold text-2xl">Cart</h1>
         <button
           className="px-4 bg-green-100 m-4 border border-black  rounded-lg"
-          onClick={() => handleClearCart}
+          onClick={() => handleClearCart()}
         >
           Clear
         </button>
       </div>
       <div className="w-6/12 m-auto">
-        {cart.items.length === 0 && <h2>Your Cart is Empty</h2>}
+        {cart.length === 0 && <h2>Your Cart is Empty</h2>}
         <ItemList items={cart} isCart={true} />
       </div>
     </div>
