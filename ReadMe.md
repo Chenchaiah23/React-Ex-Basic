@@ -45,3 +45,13 @@ Access app : http://localhost:1234<br/>
 - Unit Testing<br/>
 - Integration Testing<br/>
 - e2e Testing<br/>
+
+## Setting up Test lib
+- Install Raact Testing Library
+- Install jest
+- Install Babel dependencies
+- Configure babel.config.js
+- Configure parcel config file to disable default babel transpilation
+- Jest configuration : npx jest --init
+- Install jsdom library 
+

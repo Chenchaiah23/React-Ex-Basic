@@ -15,7 +15,8 @@ const Header = () => {
   const cartItems = useSelector((store) => store.cart.items);
 
   return (
-    <div className="flex justify-between bg-green-300 shadow-lg m-2">
+    <>
+      <div className="flex justify-between bg-green-300 shadow-2xl shadow-black fixed top-0 left-0 right-0">
       <div className="logo-container">
         <img className="w-32" src={CDN_URL} />
       </div>
@@ -58,6 +59,9 @@ const Header = () => {
         </ul>
       </div>
     </div>
+    <div className="p-20"></div>
+    </>
+    
   );
 };
 
