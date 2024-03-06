@@ -4,8 +4,9 @@ import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import 'dotenv/config';
+import "dotenv/config";
 import UserContext from "../utils/UserContext";
+import { HOME_PAGE_URL } from "../utils/constants";
 
 const Body = () => {
   const [listOfRests, setListOfRests] = useState(null);
@@ -13,23 +14,23 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const onlineStatus = useOnlineStatus();
   const RestCardLabel = withBestLabel(RestCard);
-  const {loggedInUser, setUserName} = useContext(UserContext);
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   useEffect(() => {
     process.env.APP_START === "online" ? fetchLiveData() : fetchMockData();
   }, []);
   const fetchMockData = async () => {
     //console.log(restData.data.cards);
-    const data = await fetch(
-      "http://localhost:3000/homePage.json"
+    const data = await fetch("http://localhost:3000/homePage.json");
+    setListOfRests(
+      restData.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
     );
-    setListOfRests(restData.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
-    setFilteredList(restData.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+    setFilteredList(
+      restData.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+    );
   };
   const fetchLiveData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    const data = await fetch(HOME_PAGE_URL);
     const json = await data.json();
     // console.log(
     //   json.data.cards
@@ -46,51 +47,56 @@ const Body = () => {
     return <Shimmer />;
   }
   return (
-    <div className="">
+    <div>
       <div className="flex p-4">
-      <div className="" >
-        <input
-          type="text"
-          className="border border-solid border-black"
-          value={searchText}
-          onChange={(e) => {
-            setSearchText(e.target.value);
-            //if(e.target.value === '')
-            //fetchData();
-          }}
-        />
-        <button
-          className="px-4 bg-green-100 m-4 border border-black  rounded-lg"
-          onClick={() => {
-            const filterList = listOfRests.filter((rest) =>
-              rest.info.name.toLowerCase().includes(searchText.toLowerCase())
-            );
-            setFilteredList(filterList);
-          }}
-        >
-          Search
-        </button>
+        <div className="">
+          <input
+            type="text"
+            className="border border-solid border-black"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+              //if(e.target.value === '')
+              //fetchData();
+            }}
+          />
+          <button
+            className="px-4 bg-green-100 m-4 border border-black  rounded-lg"
+            onClick={() => {
+              const filterList = listOfRests.filter((rest) =>
+                rest.info.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+              setFilteredList(filterList);
+            }}
+          >
+            Search
+          </button>
+        </div>
+        <div className="">
+          <button
+            className="px-4 bg-green-100 m-4 border border-black  rounded-lg"
+            onClick={() => {
+              const filteredList = listOfRests.filter(
+                (rest) => rest.info.avgRating > 4.4
+              );
+              setFilteredList(filteredList);
+            }}
+          >
+            Top Rated Restaurants
+          </button>
+        </div>
+        <div className="p-4">
+          Update Context :
+          <input
+            className="border border-black px-2"
+            type="text"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          ></input>
+        </div>
       </div>
-      <div className="">
-        <button
-          className="px-4 bg-green-100 m-4 border border-black  rounded-lg"
-          onClick={() => {
-            const filteredList = listOfRests.filter(
-              (rest) => rest.info.avgRating > 4.4
-            );
-            setFilteredList(filteredList);
-          }}
-        >
-          Top Rated Restaurants
-        </button>
-      </div>
-      <div className="p-4">
-        Update Context : 
-        <input className="border border-black px-2" type="text" value={loggedInUser} onChange={(e) => setUserName(e.target.value)}></input>
-      </div>
-      </div>
-      
-      <div className="flex flex-wrap rounded-md">
+
+      <div className="flex flex-wrap rounded-md flex-grow-0">
         {filteredList.map((restaurant) => (
           <Link
             to={"/restaurants/" + restaurant.info.id}
