@@ -33,7 +33,7 @@ const Body = () => {
     const data = await fetch(HOME_PAGE_URL);
     const json = await data.json();
     // console.log(
-    //   json.data.cards
+    //   json
     // );
     setListOfRests(
       json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
@@ -59,6 +59,7 @@ const Body = () => {
               //if(e.target.value === '')
               //fetchData();
             }}
+            data-testid = "searchInput"
           />
           <button
             className="px-4 bg-green-100 m-4 border border-black  rounded-lg"
@@ -79,6 +80,7 @@ const Body = () => {
               const filteredList = listOfRests.filter(
                 (rest) => rest.info.avgRating > 4.4
               );
+              
               setFilteredList(filteredList);
             }}
           >

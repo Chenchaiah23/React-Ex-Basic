@@ -4,10 +4,11 @@ import { LOGO_URL } from "../utils/constants";
 
 const RestCard = (props) => {
   const restData = props;
+  //console.log(restData)
   const { name, avgRating, sla, cloudinaryImageId } = restData?.restData.info;
   const { loggedInUser } = useContext(UserContext);
   return (
-    <div className="m-4 p-4 w-52 shadow-xl shadow-black bg-green-100 hover:bg-green-600 hover:text-white">
+    <div data-testid="rest-card-testid" className="m-4 p-4 w-52 shadow-xl shadow-black bg-green-100 hover:bg-green-600 hover:text-white">
       <img className="rounded-lg " src={LOGO_URL + cloudinaryImageId} />
       <h3 className="font-bold py-2"> {name}</h3>
       <h4> {avgRating}</h4>

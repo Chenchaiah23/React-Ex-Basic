@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { CDN_URL, GREEN_DOT, RED_DOT } from "../utils/constants";
+import { CDN_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";

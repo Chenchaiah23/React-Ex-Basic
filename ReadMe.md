@@ -62,4 +62,12 @@ Access app : http://localhost:1234<br/>
 - Install @babel/preset-react -  to make JSX work in test cases
 - Include @babel/preset-react inside babel config
 - Install @testing-library/jest-dom - toBeInTheDocument()
+- Mock images in test files using below config in jest.config.js
+ moduleNameMapper: {<br/>
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":<br/>
+      "<rootDir>/src/__mocks__/fileMock.js",<br/>
+    "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js",<br/>
+  },<br/>
+  
+  
 
